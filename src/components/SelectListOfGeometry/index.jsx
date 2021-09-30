@@ -24,7 +24,7 @@ function SelectListOfGeometry(props) {
           label="Geometry"
           onChange={props.handleChange}
         >
-            {geometryModel.map((item) => {return <MenuItem value={item}>{item}</MenuItem>})}
+            {geometryModel.map((item, index) => {return <MenuItem value={item} key={index}>{item}</MenuItem>})}
         </Select>
       </FormControl>
     </Box>

@@ -21,6 +21,7 @@ function InputForm(props) {
       <TextField
           id="outlined-multiline-flexible"
           variant="outlined"
+          label="Scale"
           value={props.scale}
           onChange={props.handleChange}
         />

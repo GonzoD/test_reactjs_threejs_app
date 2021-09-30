@@ -60,8 +60,8 @@ function App() {
   };
 
   const createNewModel = () => {
-    const item = (geometry && scale && {'component':<GeometryModel geometryType={geometry} scale={scale} mesh={mesh}/>, 'uuid': uuid})
-    item && setListOfModels([...listOfModels, item])
+    const item = (geometry && scale && {'component':(index) => <GeometryModel key={index} geometryType={geometry} scale={scale} mesh={mesh}/>, 'uuid': uuid})
+    item && isNaN(scale) === false && setListOfModels([...listOfModels, item])
   }
 
   return (
@@ -88,14 +88,14 @@ function App() {
             <meshStandardMaterial attach='material' color={'#6a869f'} />
           </mesh>
         </group>
-        {listOfModels.map((item) => {
-          return item.component
+        {listOfModels.map((item, index) => {
+          return item.component(index)
         })}
         <OrbitControls position='40'/>
       </Canvas>
       <div className={classes.listOfUUIDs}>
       {listOfModels.map((item, index) => {
-          return <div className={classes.itemInListOfUUIDs}>
+          return <div key={index} className={classes.itemInListOfUUIDs}>
             {item.uuid}
             <IconButton onClick={function() {
               if (index !== -1) {
